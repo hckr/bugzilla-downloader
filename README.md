@@ -31,6 +31,7 @@ Jakoś musimy uporządkować kod w repozytorium, także tu piszmy, co znajduje s
 
 * `ui` - pliki (a właściwie jeden plik) Qt Designera oraz plik(i) wygenerowane przez `rbuic4` na podstawie pliku .ui (przejrzyjcie prezentację o QtRuby, link na grupie FB)
 * `parsers` - klasa bazowa parsera i klasy pochodne parserów poszczególnych podstron
+* `exporters` - klasa bazowa klas eksportujących i klasy pochodne eksportujące do poszczególnych formatów
 
 Hello world!
 ---
