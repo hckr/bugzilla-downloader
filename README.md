@@ -39,3 +39,8 @@ Tutaj wypadałoby potem coś napisać o projekcie.
 Instalacja
 ---
 A tutaj coś o instalacji, a raczej uruchomieniu.
+
+Instalacja potrzebnych gemów: `gem install nokogiri open-uri htmlentities`
+(na końcu można dodać `--user-install`, wtedy pakiety są instalowane tylko dla aktualnego użytkownika)
+
+Mam nadzieję, ze niczego nie przeoczyłem, w razie czego Googlujcie błędy. ;)
