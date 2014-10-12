@@ -32,6 +32,7 @@ Jakoś musimy uporządkować kod w repozytorium, także tu piszmy, co znajduje s
 * `ui` - pliki (a właściwie jeden plik) Qt Designera oraz plik(i) wygenerowane przez `rbuic4` na podstawie pliku .ui (przejrzyjcie prezentację o QtRuby, link na grupie FB)
 * `parsers` - klasa bazowa parsera i klasy pochodne parserów poszczególnych podstron
 * `exporters` - klasa bazowa klas eksportujących i klasy pochodne eksportujące do poszczególnych formatów
+* `tests` (w różnych folderach) - testy jednostkowe (głównie mają sens dla parserów)
 
 Hello world!
 ---
@@ -41,7 +42,30 @@ Instalacja
 ---
 A tutaj coś o instalacji, a raczej uruchomieniu.
 
-Instalacja potrzebnych gemów: `gem install nokogiri open-uri htmlentities`
+Wymagane zależności: Ruby >= 2.0.0, Qt4, pakiet kdebindings-qtruby (Arch) lub pokrewny (tylko Linux)
+
+Instalacja potrzebnych gemów: `gem install nokogiri open-uri htmlentities` (+ `qtbindings` dla Windows)
 (na końcu można dodać `--user-install`, wtedy pakiety są instalowane tylko dla aktualnego użytkownika)
+
+Przydatne linki
+---
+https://www.ruby-lang.org/pl/
+
+https://www.ruby-lang.org/pl/documentation/ruby-from-other-languages/
+
+http://qt-project.org/downloads
+
+http://www.slideshare.net/YnonPerek/qtruby
+
+https://techbase.kde.org/Development/Languages/Ruby
+
+http://www.nokogiri.org/tutorials/installing_nokogiri.html
+
+http://en.wikibooks.org/wiki/Ruby_Programming/Unit_testing
+
+[Qt Designer - tutorial cz. 1](https://www.youtube.com/watch?v=LYF0spYkXUs)
+
+[Qt Designer - tutorial cz. 2](https://www.youtube.com/watch?v=E7Ud6FonsR4)
+
 
 Mam nadzieję, ze niczego nie przeoczyłem, w razie czego Googlujcie błędy. ;)
