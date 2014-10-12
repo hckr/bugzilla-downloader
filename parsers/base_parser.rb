@@ -11,6 +11,7 @@ require 'htmlentities'
 class BaseParser
   include Enumerable
   extend Forwardable
+  attr_reader :results
   def_delegators :@results, :each, :length
   
   @@bugzilla_url = '' # zmienna klasowa ustawiana w main.rb

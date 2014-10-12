@@ -7,9 +7,9 @@ require_relative 'base_parser'
 class ProductsListParser < BaseParser
   @@subpage_uri = 'describecomponents.cgi'
 
-  def initialize()
+  def initialize(html='')
     @results = []
-    html = load_html(@@subpage_uri)
+    html = load_html(@@subpage_uri) if html.length == 0
     regex_occurences = html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
     regex_occurences.each do |product_info|
       result = {
