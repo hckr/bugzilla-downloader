@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin
   Klasa bazowa dla klas eksportujących dane do pliku
 =end

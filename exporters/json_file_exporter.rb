@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin
   Klasa eksportująca dane do pliku w formacie JSON
 =end

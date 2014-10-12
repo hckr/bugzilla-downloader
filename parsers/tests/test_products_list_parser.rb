@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin
   Testy jednostkowe dla klasy parsera listy produktów
 =end

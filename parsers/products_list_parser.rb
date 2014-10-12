@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin
   Klasa parsera służącego do wyciągania listy projektów
 =end
@@ -18,6 +20,13 @@ class ProductsListParser < BaseParser
       }
       @results << result
     end
+  end
+
+  def subpage_uri_by_product_name(name)
+    @results.each do |result|
+      return result[:subpage_uri] if result[:name] == name
+    end
+    return nil
   end
 
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 =begin
   Klasa sterująca GUI.
 =end
@@ -13,7 +15,6 @@ class GUIController
     @ui = Ui_MainWindow.new
     @window = Qt::MainWindow.new
     @ui.setupUi(@window)
-    @products_subpage_uris = Hash.new
   end
 
   def on_bugzilla_url_select()
@@ -36,13 +37,16 @@ class GUIController
     @ui.productsComboBox.clear()
   end
 
-  def add_product_to_list(name, subpage_uri)
+  def add_product_to_list(name)
     @ui.productsComboBox.addItem(name)
-    @products_subpage_uris[@ui.productsComboBox.count - 1] = subpage_uri
   end
 
-  def selected_product_subpage_uri()
-    return @products_subpage_uris[@ui.productsComboBox.currentIndex]
+  def selected_product_index()
+    return @ui.productsComboBox.currentIndex
+  end
+
+  def selected_product_name()
+    return @ui.productsComboBox.currentText.force_encoding('utf-8')
   end
 
   def show()

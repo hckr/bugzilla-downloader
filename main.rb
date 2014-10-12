@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 =begin
   Punkt wejścia do aplikacji.
@@ -18,13 +19,14 @@ gui.on_bugzilla_url_select do
   products_parser = ProductsListParser.new
   gui.clear_products_list()
   products_parser.each do |product|
-    gui.add_product_to_list(product[:name], product[:subpage_uri])
+    gui.add_product_to_list(product[:name])
   end
-  JSONFileExporter.new('products_list.json').save(products_parser.results)
+  # JSONFileExporter.new('products_list.json').save(products_parser.results)
 end
 
 gui.on_export do
-  puts gui.selected_product_subpage_uri
+  puts gui.selected_product_name
+  puts products_parser.subpage_uri_by_product_name(gui.selected_product_name)
 end
 
 gui.show
