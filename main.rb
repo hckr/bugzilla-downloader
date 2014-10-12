@@ -20,7 +20,6 @@ gui.on_bugzilla_url_select do
   products_parser.each do |product|
     gui.add_product_to_list(product[:name], product[:subpage_uri])
   end
-  puts products_parser.results
   JSONFileExporter.new('products_list.json').save(products_parser.results)
 end
 

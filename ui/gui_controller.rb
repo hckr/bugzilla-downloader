@@ -38,11 +38,11 @@ class GUIController
 
   def add_product_to_list(name, subpage_uri)
     @ui.productsComboBox.addItem(name)
-    @products_subpage_uris[name] = subpage_uri
+    @products_subpage_uris[@ui.productsComboBox.count - 1] = subpage_uri
   end
 
   def selected_product_subpage_uri()
-    return @products_subpage_uris[@ui.productsComboBox.currentText]
+    return @products_subpage_uris[@ui.productsComboBox.currentIndex]
   end
 
   def show()
