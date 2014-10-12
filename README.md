@@ -42,7 +42,7 @@ Instalacja
 ---
 A tutaj coś o instalacji, a raczej uruchomieniu.
 
-Wymagane zależności: Ruby >= 2.0.0, Qt4, pakiet kdebindings-qtruby (Arch) lub pokrewny (tylko Linux)
+Wymagane zależności: Ruby >= 2.0.0, Qt4, pakiet kdebindings-qtruby (Arch) lub pokrewny (tylko Linux) (*Dla Minta, Ubuntu i podobnych popularnych dystrybucji będzie to `qtbindings` - M.W.*)
 
 Instalacja potrzebnych gemów: `gem install nokogiri open-uri htmlentities` (+ `qtbindings` dla Windows)
 (na końcu można dodać `--user-install`, wtedy pakiety są instalowane tylko dla aktualnego użytkownika)
