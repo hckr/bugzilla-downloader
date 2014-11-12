@@ -5,12 +5,9 @@
   Punkt wejścia do aplikacji.
 =end
 
-require_relative 'parsers/base_parser'
 require_relative 'parsers/products_list_parser'
-require_relative 'exporters/json_file_exporter'
+require_relative 'parsers/components_list_parser'
 require_relative 'ui/gui_controller'
-
-products_parser = nil
 
 gui = GUIController.new
 
@@ -21,12 +18,16 @@ gui.on_bugzilla_url_select do
   products_parser.each do |product|
     gui.add_product_to_list(product[:name])
   end
-  # JSONFileExporter.new('products_list.json').save(products_parser.results)
 end
 
-gui.on_export do
-  puts gui.selected_product_name
-  puts products_parser.subpage_uri_by_product_name(gui.selected_product_name)
+gui.on_product_select do |product_name|
+  if product_name != ''
+    components_parser = ComponentListParser.new product_name
+    gui.clear_components_list()
+    components_parser.each do |component|
+      gui.add_component_to_list(component[:name])
+    end
+  end
 end
 
 gui.show

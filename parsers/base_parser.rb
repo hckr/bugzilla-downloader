@@ -28,6 +28,7 @@ class BaseParser
       @@bugzilla_url + subpage_uri,
       'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0' # podszywamy się pod Firefoksa
     ).read
+    html.force_encoding('utf-8')
     return html
   end
 

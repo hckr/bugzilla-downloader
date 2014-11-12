@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>552</width>
-    <height>133</height>
+    <height>319</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,14 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>100</width>
+          <width>135</width>
           <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>135</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="text">
@@ -67,6 +73,18 @@
         </property>
         <property name="minimumSize">
          <size>
+          <width>135</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>135</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
           <width>100</width>
           <height>0</height>
          </size>
@@ -85,13 +103,55 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QPushButton" name="ExportButton">
+       <widget class="QLabel" name="label_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>135</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>135</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
-         <string>Eksportuj</string>
+         <string>Wybierz komponent:</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="ComponentsComboBox"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="AddToListButton">
+        <property name="text">
+         <string>Dodaj do listy</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QListWidget" name="listWidget"/>
       </item>
      </layout>
     </item>
@@ -103,7 +163,7 @@
      <x>0</x>
      <y>0</y>
      <width>552</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

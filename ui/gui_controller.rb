@@ -15,38 +15,37 @@ class GUIController
     @ui = Ui_MainWindow.new
     @window = Qt::MainWindow.new
     @ui.setupUi(@window)
+    @window.setWindowTitle('Bugzilla Downloader ver. 0.1 pre-alpha')
   end
 
-  def on_bugzilla_url_select()
-    @ui.loadProductsButton.connect(SIGNAL :clicked) do
-      yield
-    end
+  def on_bugzilla_url_select(&block)
+    @ui.loadProductsButton.connect(SIGNAL('clicked()'), &block)
   end
 
-  def on_export()
-    @ui.exportButton.connect(SIGNAL :clicked) do
-      yield
+  def on_product_select(&block)
+    @ui.productsComboBox.connect(SIGNAL('currentIndexChanged(QString)')) do |product_name|
+      block.call product_name.force_encoding('utf-8')
     end
   end
 
   def bugzilla_url()
-    return @ui.bugzillaURLLineEdit.displayText
+    @ui.bugzillaURLLineEdit.displayText
   end
 
   def clear_products_list()
     @ui.productsComboBox.clear()
   end
 
+  def clear_components_list()
+    @ui.componentsComboBox.clear()
+  end
+
   def add_product_to_list(name)
     @ui.productsComboBox.addItem(name)
   end
 
-  def selected_product_index()
-    return @ui.productsComboBox.currentIndex
-  end
-
-  def selected_product_name()
-    return @ui.productsComboBox.currentText.force_encoding('utf-8')
+  def add_component_to_list(name)
+    @ui.componentsComboBox.addItem(name)
   end
 
   def show()
