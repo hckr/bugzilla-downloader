@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: niedz. pa 12 02:00:59 2014
+** Created: r. gru 10 19:21:27 2014
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -17,6 +17,24 @@ class Ui_MainWindow
     attr_reader :horizontalLayout_2
     attr_reader :label_2
     attr_reader :productsComboBox
+    attr_reader :loadComponentsButton
+    attr_reader :horizontalLayout_4
+    attr_reader :label_3
+    attr_reader :componentsComboBox
+    attr_reader :pushButton
+    attr_reader :listView
+    attr_reader :horizontalLayout_5
+    attr_reader :radioButton
+    attr_reader :label_4
+    attr_reader :dateEdit
+    attr_reader :label_5
+    attr_reader :dateEdit_2
+    attr_reader :horizontalLayout_6
+    attr_reader :label_6
+    attr_reader :lineEdit
+    attr_reader :horizontalLayout_7
+    attr_reader :label_7
+    attr_reader :lineEdit_2
     attr_reader :horizontalLayout_3
     attr_reader :exportButton
     attr_reader :menubar
@@ -26,7 +44,7 @@ class Ui_MainWindow
     if mainWindow.objectName.nil?
         mainWindow.objectName = "mainWindow"
     end
-    mainWindow.resize(552, 133)
+    mainWindow.resize(575, 488)
     mainWindow.styleSheet = "QLabel { qproperty-alignment: 'AlignVCenter | AlignRight'; }"
     @centralwidget = Qt::Widget.new(mainWindow)
     @centralwidget.objectName = "centralwidget"
@@ -71,11 +89,139 @@ class Ui_MainWindow
 
     @productsComboBox = Qt::ComboBox.new(@centralwidget)
     @productsComboBox.objectName = "productsComboBox"
+    @sizePolicy1 = Qt::SizePolicy.new(Qt::SizePolicy::Expanding, Qt::SizePolicy::Fixed)
+    @sizePolicy1.setHorizontalStretch(0)
+    @sizePolicy1.setVerticalStretch(0)
+    @sizePolicy1.heightForWidth = @productsComboBox.sizePolicy.hasHeightForWidth
+    @productsComboBox.sizePolicy = @sizePolicy1
 
     @horizontalLayout_2.addWidget(@productsComboBox)
 
+    @loadComponentsButton = Qt::PushButton.new(@centralwidget)
+    @loadComponentsButton.objectName = "loadComponentsButton"
+    @sizePolicy2 = Qt::SizePolicy.new(Qt::SizePolicy::Minimum, Qt::SizePolicy::Fixed)
+    @sizePolicy2.setHorizontalStretch(0)
+    @sizePolicy2.setVerticalStretch(0)
+    @sizePolicy2.heightForWidth = @loadComponentsButton.sizePolicy.hasHeightForWidth
+    @loadComponentsButton.sizePolicy = @sizePolicy2
+
+    @horizontalLayout_2.addWidget(@loadComponentsButton)
+
 
     @verticalLayout.addLayout(@horizontalLayout_2)
+
+    @horizontalLayout_4 = Qt::HBoxLayout.new()
+    @horizontalLayout_4.objectName = "horizontalLayout_4"
+    @label_3 = Qt::Label.new(@centralwidget)
+    @label_3.objectName = "label_3"
+    @sizePolicy.heightForWidth = @label_3.sizePolicy.hasHeightForWidth
+    @label_3.sizePolicy = @sizePolicy
+
+    @horizontalLayout_4.addWidget(@label_3)
+
+    @componentsComboBox = Qt::ComboBox.new(@centralwidget)
+    @componentsComboBox.objectName = "componentsComboBox"
+    @sizePolicy1.heightForWidth = @componentsComboBox.sizePolicy.hasHeightForWidth
+    @componentsComboBox.sizePolicy = @sizePolicy1
+
+    @horizontalLayout_4.addWidget(@componentsComboBox)
+
+    @pushButton = Qt::PushButton.new(@centralwidget)
+    @pushButton.objectName = "pushButton"
+
+    @horizontalLayout_4.addWidget(@pushButton)
+
+
+    @verticalLayout.addLayout(@horizontalLayout_4)
+
+    @listView = Qt::ListView.new(@centralwidget)
+    @listView.objectName = "listView"
+    @sizePolicy3 = Qt::SizePolicy.new(Qt::SizePolicy::Expanding, Qt::SizePolicy::Minimum)
+    @sizePolicy3.setHorizontalStretch(0)
+    @sizePolicy3.setVerticalStretch(0)
+    @sizePolicy3.heightForWidth = @listView.sizePolicy.hasHeightForWidth
+    @listView.sizePolicy = @sizePolicy3
+
+    @verticalLayout.addWidget(@listView)
+
+    @horizontalLayout_5 = Qt::HBoxLayout.new()
+    @horizontalLayout_5.objectName = "horizontalLayout_5"
+    @radioButton = Qt::RadioButton.new(@centralwidget)
+    @radioButton.objectName = "radioButton"
+    @sizePolicy4 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Fixed)
+    @sizePolicy4.setHorizontalStretch(0)
+    @sizePolicy4.setVerticalStretch(0)
+    @sizePolicy4.heightForWidth = @radioButton.sizePolicy.hasHeightForWidth
+    @radioButton.sizePolicy = @sizePolicy4
+
+    @horizontalLayout_5.addWidget(@radioButton)
+
+    @label_4 = Qt::Label.new(@centralwidget)
+    @label_4.objectName = "label_4"
+    @sizePolicy5 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Preferred)
+    @sizePolicy5.setHorizontalStretch(0)
+    @sizePolicy5.setVerticalStretch(0)
+    @sizePolicy5.heightForWidth = @label_4.sizePolicy.hasHeightForWidth
+    @label_4.sizePolicy = @sizePolicy5
+
+    @horizontalLayout_5.addWidget(@label_4)
+
+    @dateEdit = Qt::DateEdit.new(@centralwidget)
+    @dateEdit.objectName = "dateEdit"
+    @sizePolicy6 = Qt::SizePolicy.new(Qt::SizePolicy::Fixed, Qt::SizePolicy::Fixed)
+    @sizePolicy6.setHorizontalStretch(0)
+    @sizePolicy6.setVerticalStretch(0)
+    @sizePolicy6.heightForWidth = @dateEdit.sizePolicy.hasHeightForWidth
+    @dateEdit.sizePolicy = @sizePolicy6
+
+    @horizontalLayout_5.addWidget(@dateEdit)
+
+    @label_5 = Qt::Label.new(@centralwidget)
+    @label_5.objectName = "label_5"
+    @sizePolicy5.heightForWidth = @label_5.sizePolicy.hasHeightForWidth
+    @label_5.sizePolicy = @sizePolicy5
+
+    @horizontalLayout_5.addWidget(@label_5)
+
+    @dateEdit_2 = Qt::DateEdit.new(@centralwidget)
+    @dateEdit_2.objectName = "dateEdit_2"
+    @sizePolicy6.heightForWidth = @dateEdit_2.sizePolicy.hasHeightForWidth
+    @dateEdit_2.sizePolicy = @sizePolicy6
+
+    @horizontalLayout_5.addWidget(@dateEdit_2)
+
+    @horizontalLayout_6 = Qt::HBoxLayout.new()
+    @horizontalLayout_6.objectName = "horizontalLayout_6"
+    @label_6 = Qt::Label.new(@centralwidget)
+    @label_6.objectName = "label_6"
+
+    @horizontalLayout_6.addWidget(@label_6)
+
+    @lineEdit = Qt::LineEdit.new(@centralwidget)
+    @lineEdit.objectName = "lineEdit"
+
+    @horizontalLayout_6.addWidget(@lineEdit)
+
+
+    @horizontalLayout_5.addLayout(@horizontalLayout_6)
+
+
+    @verticalLayout.addLayout(@horizontalLayout_5)
+
+    @horizontalLayout_7 = Qt::HBoxLayout.new()
+    @horizontalLayout_7.objectName = "horizontalLayout_7"
+    @label_7 = Qt::Label.new(@centralwidget)
+    @label_7.objectName = "label_7"
+
+    @horizontalLayout_7.addWidget(@label_7)
+
+    @lineEdit_2 = Qt::LineEdit.new(@centralwidget)
+    @lineEdit_2.objectName = "lineEdit_2"
+
+    @horizontalLayout_7.addWidget(@lineEdit_2)
+
+
+    @verticalLayout.addLayout(@horizontalLayout_7)
 
     @horizontalLayout_3 = Qt::HBoxLayout.new()
     @horizontalLayout_3.objectName = "horizontalLayout_3"
@@ -90,7 +236,7 @@ class Ui_MainWindow
     mainWindow.centralWidget = @centralwidget
     @menubar = Qt::MenuBar.new(mainWindow)
     @menubar.objectName = "menubar"
-    @menubar.geometry = Qt::Rect.new(0, 0, 552, 21)
+    @menubar.geometry = Qt::Rect.new(0, 0, 575, 25)
     mainWindow.setMenuBar(@menubar)
     @statusbar = Qt::StatusBar.new(mainWindow)
     @statusbar.objectName = "statusbar"
@@ -106,11 +252,19 @@ class Ui_MainWindow
     end
 
     def retranslateUi(mainWindow)
-    mainWindow.windowTitle = Qt::Application.translate("MainWindow", "MainWindow", nil, Qt::Application::UnicodeUTF8)
+    mainWindow.windowTitle = Qt::Application.translate("MainWindow", "Bugzilla Downloader", nil, Qt::Application::UnicodeUTF8)
     @label.text = Qt::Application.translate("MainWindow", "Adres Bugzilli:", nil, Qt::Application::UnicodeUTF8)
     @bugzillaURLLineEdit.text = Qt::Application.translate("MainWindow", "https://bugzilla.mozilla.org/", nil, Qt::Application::UnicodeUTF8)
     @loadProductsButton.text = Qt::Application.translate("MainWindow", "Za\305\202aduj produkty", nil, Qt::Application::UnicodeUTF8)
     @label_2.text = Qt::Application.translate("MainWindow", "Wybierz projekt:", nil, Qt::Application::UnicodeUTF8)
+    @loadComponentsButton.text = Qt::Application.translate("MainWindow", "Za\305\202aduj komponenty", nil, Qt::Application::UnicodeUTF8)
+    @label_3.text = Qt::Application.translate("MainWindow", "Wybierz komponent:", nil, Qt::Application::UnicodeUTF8)
+    @pushButton.text = Qt::Application.translate("MainWindow", "Dodaj do listy", nil, Qt::Application::UnicodeUTF8)
+    @radioButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)
+    @label_4.text = Qt::Application.translate("MainWindow", "Od:", nil, Qt::Application::UnicodeUTF8)
+    @label_5.text = Qt::Application.translate("MainWindow", "Do:", nil, Qt::Application::UnicodeUTF8)
+    @label_6.text = Qt::Application.translate("MainWindow", "Autor:", nil, Qt::Application::UnicodeUTF8)
+    @label_7.text = Qt::Application.translate("MainWindow", "Szukana Fraza:", nil, Qt::Application::UnicodeUTF8)
     @exportButton.text = Qt::Application.translate("MainWindow", "Eksportuj", nil, Qt::Application::UnicodeUTF8)
     end # retranslateUi
 

@@ -23,6 +23,12 @@ class GUIController
     end
   end
 
+  def on_product_select()
+    @ui.loadComponentsButton.connect(SIGNAL :clicked) do
+      yield
+    end
+  end
+
   def on_export()
     @ui.exportButton.connect(SIGNAL :clicked) do
       yield
@@ -48,6 +54,24 @@ class GUIController
   def selected_product_name()
     return @ui.productsComboBox.currentText.force_encoding('utf-8')
   end
+
+
+  def clear_components_list()
+    @ui.componentsComboBox.clear()
+  end
+
+  def add_component_to_list(name)
+    @ui.componentsComboBox.addItem(name)
+  end
+
+  def selected_component_index()
+    return @ui.componentsComboBox.currentIndex
+  end
+
+  def selected_component_name()
+    return @ui.componentsComboBox.currentText.force_encoding('utf-8')
+  end
+
 
   def show()
     @window.show
