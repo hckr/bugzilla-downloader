@@ -27,12 +27,17 @@ gui.on_bugzilla_url_select do
 end
 
 gui.on_product_select do
-components_parser = ComponentsListParser.new(gui.selected_product_name)
+components_parser = ComponentsListParser.new(products_parser.uri_name_by_product_name(gui.selected_product_name))
   gui.clear_components_list()
   components_parser.each do |component|
     gui.add_component_to_list(component[:name])
   end
 end
+
+gui.on_add_to_list_select do
+  gui.add_to_components_list()
+end
+
 gui.on_export do
   puts gui.selected_product_name
   puts products_parser.subpage_uri_by_product_name(gui.selected_product_name)

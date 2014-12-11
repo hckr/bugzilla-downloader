@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: r. gru 10 19:21:27 2014
+** Created: czw. gru 11 09:34:21 2014
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -21,8 +21,8 @@ class Ui_MainWindow
     attr_reader :horizontalLayout_4
     attr_reader :label_3
     attr_reader :componentsComboBox
-    attr_reader :pushButton
-    attr_reader :listView
+    attr_reader :addToListButton
+    attr_reader :componentsList
     attr_reader :horizontalLayout_5
     attr_reader :radioButton
     attr_reader :label_4
@@ -126,67 +126,62 @@ class Ui_MainWindow
 
     @horizontalLayout_4.addWidget(@componentsComboBox)
 
-    @pushButton = Qt::PushButton.new(@centralwidget)
-    @pushButton.objectName = "pushButton"
+    @addToListButton = Qt::PushButton.new(@centralwidget)
+    @addToListButton.objectName = "addToListButton"
 
-    @horizontalLayout_4.addWidget(@pushButton)
+    @horizontalLayout_4.addWidget(@addToListButton)
 
 
     @verticalLayout.addLayout(@horizontalLayout_4)
 
-    @listView = Qt::ListView.new(@centralwidget)
-    @listView.objectName = "listView"
-    @sizePolicy3 = Qt::SizePolicy.new(Qt::SizePolicy::Expanding, Qt::SizePolicy::Minimum)
-    @sizePolicy3.setHorizontalStretch(0)
-    @sizePolicy3.setVerticalStretch(0)
-    @sizePolicy3.heightForWidth = @listView.sizePolicy.hasHeightForWidth
-    @listView.sizePolicy = @sizePolicy3
+    @componentsList = Qt::ListWidget.new(@centralwidget)
+    @componentsList.objectName = "componentsList"
 
-    @verticalLayout.addWidget(@listView)
+    @verticalLayout.addWidget(@componentsList)
 
     @horizontalLayout_5 = Qt::HBoxLayout.new()
     @horizontalLayout_5.objectName = "horizontalLayout_5"
     @radioButton = Qt::RadioButton.new(@centralwidget)
     @radioButton.objectName = "radioButton"
-    @sizePolicy4 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Fixed)
-    @sizePolicy4.setHorizontalStretch(0)
-    @sizePolicy4.setVerticalStretch(0)
-    @sizePolicy4.heightForWidth = @radioButton.sizePolicy.hasHeightForWidth
-    @radioButton.sizePolicy = @sizePolicy4
+    @sizePolicy3 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Fixed)
+    @sizePolicy3.setHorizontalStretch(0)
+    @sizePolicy3.setVerticalStretch(0)
+    @sizePolicy3.heightForWidth = @radioButton.sizePolicy.hasHeightForWidth
+    @radioButton.sizePolicy = @sizePolicy3
 
     @horizontalLayout_5.addWidget(@radioButton)
 
     @label_4 = Qt::Label.new(@centralwidget)
     @label_4.objectName = "label_4"
-    @sizePolicy5 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Preferred)
-    @sizePolicy5.setHorizontalStretch(0)
-    @sizePolicy5.setVerticalStretch(0)
-    @sizePolicy5.heightForWidth = @label_4.sizePolicy.hasHeightForWidth
-    @label_4.sizePolicy = @sizePolicy5
+    @sizePolicy4 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Preferred)
+    @sizePolicy4.setHorizontalStretch(0)
+    @sizePolicy4.setVerticalStretch(0)
+    @sizePolicy4.heightForWidth = @label_4.sizePolicy.hasHeightForWidth
+    @label_4.sizePolicy = @sizePolicy4
 
     @horizontalLayout_5.addWidget(@label_4)
 
     @dateEdit = Qt::DateEdit.new(@centralwidget)
     @dateEdit.objectName = "dateEdit"
-    @sizePolicy6 = Qt::SizePolicy.new(Qt::SizePolicy::Fixed, Qt::SizePolicy::Fixed)
-    @sizePolicy6.setHorizontalStretch(0)
-    @sizePolicy6.setVerticalStretch(0)
-    @sizePolicy6.heightForWidth = @dateEdit.sizePolicy.hasHeightForWidth
-    @dateEdit.sizePolicy = @sizePolicy6
+    @sizePolicy5 = Qt::SizePolicy.new(Qt::SizePolicy::Fixed, Qt::SizePolicy::Fixed)
+    @sizePolicy5.setHorizontalStretch(0)
+    @sizePolicy5.setVerticalStretch(0)
+    @sizePolicy5.heightForWidth = @dateEdit.sizePolicy.hasHeightForWidth
+    @dateEdit.sizePolicy = @sizePolicy5
 
     @horizontalLayout_5.addWidget(@dateEdit)
 
     @label_5 = Qt::Label.new(@centralwidget)
     @label_5.objectName = "label_5"
-    @sizePolicy5.heightForWidth = @label_5.sizePolicy.hasHeightForWidth
-    @label_5.sizePolicy = @sizePolicy5
+    @sizePolicy4.heightForWidth = @label_5.sizePolicy.hasHeightForWidth
+    @label_5.sizePolicy = @sizePolicy4
 
     @horizontalLayout_5.addWidget(@label_5)
 
     @dateEdit_2 = Qt::DateEdit.new(@centralwidget)
     @dateEdit_2.objectName = "dateEdit_2"
-    @sizePolicy6.heightForWidth = @dateEdit_2.sizePolicy.hasHeightForWidth
-    @dateEdit_2.sizePolicy = @sizePolicy6
+    @sizePolicy5.heightForWidth = @dateEdit_2.sizePolicy.hasHeightForWidth
+    @dateEdit_2.sizePolicy = @sizePolicy5
 
     @horizontalLayout_5.addWidget(@dateEdit_2)
 
@@ -259,7 +254,7 @@ class Ui_MainWindow
     @label_2.text = Qt::Application.translate("MainWindow", "Wybierz projekt:", nil, Qt::Application::UnicodeUTF8)
     @loadComponentsButton.text = Qt::Application.translate("MainWindow", "Za\305\202aduj komponenty", nil, Qt::Application::UnicodeUTF8)
     @label_3.text = Qt::Application.translate("MainWindow", "Wybierz komponent:", nil, Qt::Application::UnicodeUTF8)
-    @pushButton.text = Qt::Application.translate("MainWindow", "Dodaj do listy", nil, Qt::Application::UnicodeUTF8)
+    @addToListButton.text = Qt::Application.translate("MainWindow", "Dodaj do listy", nil, Qt::Application::UnicodeUTF8)
     @radioButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)
     @label_4.text = Qt::Application.translate("MainWindow", "Od:", nil, Qt::Application::UnicodeUTF8)
     @label_5.text = Qt::Application.translate("MainWindow", "Do:", nil, Qt::Application::UnicodeUTF8)

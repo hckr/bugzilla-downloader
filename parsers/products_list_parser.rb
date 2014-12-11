@@ -16,6 +16,7 @@ class ProductsListParser < BaseParser
     regex_occurences.each do |product_info|
       result = {
         :name => HTMLEntities.new.decode(product_info[1]),
+        :uri_name => product_info[1].gsub("&nbsp;","%20"),
         :subpage_uri => product_info[0]
       }
       @results << result
@@ -25,6 +26,13 @@ class ProductsListParser < BaseParser
   def subpage_uri_by_product_name(name)
     @results.each do |result|
       return result[:subpage_uri] if result[:name] == name
+    end
+    return nil
+  end
+
+  def uri_name_by_product_name(name)
+    @results.each do |result|
+      return result[:uri_name] if result[:name] == name
     end
     return nil
   end

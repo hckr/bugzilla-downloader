@@ -29,6 +29,12 @@ class GUIController
     end
   end
 
+  def on_add_to_list_select()
+    @ui.addToListButton.connect(SIGNAL :clicked) do
+      yield
+    end
+  end
+
   def on_export()
     @ui.exportButton.connect(SIGNAL :clicked) do
       yield
@@ -73,6 +79,14 @@ class GUIController
   end
 
 
+
+  def add_to_list(name)
+    return @ui.componentsList.insertItem(name)
+  end
+
+  def add_to_components_list()
+    return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name)
+  end
   def show()
     @window.show
     @app.exec
