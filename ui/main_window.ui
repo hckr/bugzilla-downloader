@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>575</width>
-    <height>488</height>
+    <width>569</width>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,7 +90,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="LoadComponentsButton">
+       <widget class="QPushButton" name="AddToListButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -98,7 +98,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Załaduj komponenty</string>
+         <string>Dodaj do listy</string>
         </property>
        </widget>
       </item>
@@ -130,9 +130,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="AddToListButton">
+       <widget class="QPushButton" name="AddAllToListButton">
         <property name="text">
-         <string>Dodaj do listy</string>
+         <string>Dodaj wszystkie</string>
         </property>
        </widget>
       </item>
@@ -140,6 +140,24 @@
     </item>
     <item>
      <widget class="QListWidget" name="ComponentsList"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0">
+      <item>
+       <widget class="QPushButton" name="RemoveSelectedButton">
+        <property name="text">
+         <string>Usuń zaznaczone</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="RemoveAllButton">
+        <property name="text">
+         <string>Usuń wszystkie</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -250,8 +268,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>575</width>
-     <height>25</height>
+     <width>569</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

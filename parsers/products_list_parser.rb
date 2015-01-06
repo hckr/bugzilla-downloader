@@ -7,19 +7,33 @@
 require_relative 'base_parser'
 
 class ProductsListParser < BaseParser
-  @@subpage_uri = 'describecomponents.cgi'
+  @@subpage_product_uri = 'describecomponents.cgi'
+  @@subpage_component_uri = 'describecomponents.cgi?product='
 
   def initialize(html='')
     @results = []
-    html = load_html(@@subpage_uri) if html.length == 0
-    regex_occurences = html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
-    regex_occurences.each do |product_info|
-      result = {
+    product_html = load_html(@@subpage_product_uri) if html.length == 0
+    product_regex_occurences = product_html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
+    product_regex_occurences.each do |product_info|
+      product_result = {
         :name => HTMLEntities.new.decode(product_info[1]),
         :uri_name => product_info[1].gsub("&nbsp;","%20"),
-        :subpage_uri => product_info[0]
+        :subpage_uri => product_info[0],
+        :components => Array.new
       }
-      @results << result
+      component_html = load_html(@@subpage_component_uri + product_result[:uri_name])
+      components_regex_occurences = component_html.scan(/href="buglist.cgi\?product=#{product_result[:uri_name]}&amp;component=(.+?)">(.+?)<\/a>/)
+      components_regex_occurences.each do |component_info|
+        component_result = {
+          :product_name => product_result[:uri_name],
+          :name => HTMLEntities.new.decode(component_info[1]),
+          :uri_name => component_info[1].gsub("&nbsp;", "%20"),
+          :subpage_uri => component_info[0].gsub("amp;","")
+        }
+        product_result[:components].push(component_result)
+      end
+      puts product_result[:components].size()
+      @results << product_result
     end
   end
 
@@ -33,6 +47,13 @@ class ProductsListParser < BaseParser
   def uri_name_by_product_name(name)
     @results.each do |result|
       return result[:uri_name] if result[:name] == name
+    end
+    return nil
+  end
+
+  def product_info_by_product_name(name)
+    @results.each do |result|
+      return result if result[:name] == name
     end
     return nil
   end

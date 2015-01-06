@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: czw. gru 11 09:34:21 2014
+** Created: wt. sty 6 23:12:09 2015
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -17,12 +17,15 @@ class Ui_MainWindow
     attr_reader :horizontalLayout_2
     attr_reader :label_2
     attr_reader :productsComboBox
-    attr_reader :loadComponentsButton
+    attr_reader :addToListButton
     attr_reader :horizontalLayout_4
     attr_reader :label_3
     attr_reader :componentsComboBox
-    attr_reader :addToListButton
+    attr_reader :addAllToListButton
     attr_reader :componentsList
+    attr_reader :horizontalLayout_8
+    attr_reader :removeSelectedButton
+    attr_reader :removeAllButton
     attr_reader :horizontalLayout_5
     attr_reader :radioButton
     attr_reader :label_4
@@ -44,7 +47,7 @@ class Ui_MainWindow
     if mainWindow.objectName.nil?
         mainWindow.objectName = "mainWindow"
     end
-    mainWindow.resize(575, 488)
+    mainWindow.resize(569, 479)
     mainWindow.styleSheet = "QLabel { qproperty-alignment: 'AlignVCenter | AlignRight'; }"
     @centralwidget = Qt::Widget.new(mainWindow)
     @centralwidget.objectName = "centralwidget"
@@ -97,15 +100,15 @@ class Ui_MainWindow
 
     @horizontalLayout_2.addWidget(@productsComboBox)
 
-    @loadComponentsButton = Qt::PushButton.new(@centralwidget)
-    @loadComponentsButton.objectName = "loadComponentsButton"
+    @addToListButton = Qt::PushButton.new(@centralwidget)
+    @addToListButton.objectName = "addToListButton"
     @sizePolicy2 = Qt::SizePolicy.new(Qt::SizePolicy::Minimum, Qt::SizePolicy::Fixed)
     @sizePolicy2.setHorizontalStretch(0)
     @sizePolicy2.setVerticalStretch(0)
-    @sizePolicy2.heightForWidth = @loadComponentsButton.sizePolicy.hasHeightForWidth
-    @loadComponentsButton.sizePolicy = @sizePolicy2
+    @sizePolicy2.heightForWidth = @addToListButton.sizePolicy.hasHeightForWidth
+    @addToListButton.sizePolicy = @sizePolicy2
 
-    @horizontalLayout_2.addWidget(@loadComponentsButton)
+    @horizontalLayout_2.addWidget(@addToListButton)
 
 
     @verticalLayout.addLayout(@horizontalLayout_2)
@@ -126,10 +129,10 @@ class Ui_MainWindow
 
     @horizontalLayout_4.addWidget(@componentsComboBox)
 
-    @addToListButton = Qt::PushButton.new(@centralwidget)
-    @addToListButton.objectName = "addToListButton"
+    @addAllToListButton = Qt::PushButton.new(@centralwidget)
+    @addAllToListButton.objectName = "addAllToListButton"
 
-    @horizontalLayout_4.addWidget(@addToListButton)
+    @horizontalLayout_4.addWidget(@addAllToListButton)
 
 
     @verticalLayout.addLayout(@horizontalLayout_4)
@@ -138,6 +141,21 @@ class Ui_MainWindow
     @componentsList.objectName = "componentsList"
 
     @verticalLayout.addWidget(@componentsList)
+
+    @horizontalLayout_8 = Qt::HBoxLayout.new()
+    @horizontalLayout_8.objectName = "horizontalLayout_8"
+    @removeSelectedButton = Qt::PushButton.new(@centralwidget)
+    @removeSelectedButton.objectName = "removeSelectedButton"
+
+    @horizontalLayout_8.addWidget(@removeSelectedButton)
+
+    @removeAllButton = Qt::PushButton.new(@centralwidget)
+    @removeAllButton.objectName = "removeAllButton"
+
+    @horizontalLayout_8.addWidget(@removeAllButton)
+
+
+    @verticalLayout.addLayout(@horizontalLayout_8)
 
     @horizontalLayout_5 = Qt::HBoxLayout.new()
     @horizontalLayout_5.objectName = "horizontalLayout_5"
@@ -231,7 +249,7 @@ class Ui_MainWindow
     mainWindow.centralWidget = @centralwidget
     @menubar = Qt::MenuBar.new(mainWindow)
     @menubar.objectName = "menubar"
-    @menubar.geometry = Qt::Rect.new(0, 0, 575, 25)
+    @menubar.geometry = Qt::Rect.new(0, 0, 569, 20)
     mainWindow.setMenuBar(@menubar)
     @statusbar = Qt::StatusBar.new(mainWindow)
     @statusbar.objectName = "statusbar"
@@ -252,9 +270,11 @@ class Ui_MainWindow
     @bugzillaURLLineEdit.text = Qt::Application.translate("MainWindow", "https://bugzilla.mozilla.org/", nil, Qt::Application::UnicodeUTF8)
     @loadProductsButton.text = Qt::Application.translate("MainWindow", "Za\305\202aduj produkty", nil, Qt::Application::UnicodeUTF8)
     @label_2.text = Qt::Application.translate("MainWindow", "Wybierz projekt:", nil, Qt::Application::UnicodeUTF8)
-    @loadComponentsButton.text = Qt::Application.translate("MainWindow", "Za\305\202aduj komponenty", nil, Qt::Application::UnicodeUTF8)
-    @label_3.text = Qt::Application.translate("MainWindow", "Wybierz komponent:", nil, Qt::Application::UnicodeUTF8)
     @addToListButton.text = Qt::Application.translate("MainWindow", "Dodaj do listy", nil, Qt::Application::UnicodeUTF8)
+    @label_3.text = Qt::Application.translate("MainWindow", "Wybierz komponent:", nil, Qt::Application::UnicodeUTF8)
+    @addAllToListButton.text = Qt::Application.translate("MainWindow", "Dodaj wszystkie", nil, Qt::Application::UnicodeUTF8)
+    @removeSelectedButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 zaznaczone", nil, Qt::Application::UnicodeUTF8)
+    @removeAllButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 wszystkie", nil, Qt::Application::UnicodeUTF8)
     @radioButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)
     @label_4.text = Qt::Application.translate("MainWindow", "Od:", nil, Qt::Application::UnicodeUTF8)
     @label_5.text = Qt::Application.translate("MainWindow", "Do:", nil, Qt::Application::UnicodeUTF8)
