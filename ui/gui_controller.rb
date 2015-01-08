@@ -149,4 +149,16 @@ class GUIController
     @window.show
     @app.exec
   end
+  def progress_bar_increment(number, numMax)
+    bar_width = number * 100.0 / numMax
+    puts bar_width
+    @ui.progressBar.value = bar_width.ceil()
+  end
+  def get_already_added_size()
+    return @already_added.size
+  end
+  def disable_all()
+    
+    
+  end
 end

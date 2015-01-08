@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: wt. sty 6 23:12:09 2015
+** Created: r. sty 7 14:50:36 2015
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -22,6 +22,7 @@ class Ui_MainWindow
     attr_reader :label_3
     attr_reader :componentsComboBox
     attr_reader :addAllToListButton
+    attr_reader :progressBar
     attr_reader :componentsList
     attr_reader :horizontalLayout_8
     attr_reader :removeSelectedButton
@@ -137,6 +138,12 @@ class Ui_MainWindow
 
     @verticalLayout.addLayout(@horizontalLayout_4)
 
+    @progressBar = Qt::ProgressBar.new(@centralwidget)
+    @progressBar.objectName = "progressBar"
+    @progressBar.value = 0
+
+    @verticalLayout.addWidget(@progressBar)
+
     @componentsList = Qt::ListWidget.new(@centralwidget)
     @componentsList.objectName = "componentsList"
 
@@ -249,7 +256,7 @@ class Ui_MainWindow
     mainWindow.centralWidget = @centralwidget
     @menubar = Qt::MenuBar.new(mainWindow)
     @menubar.objectName = "menubar"
-    @menubar.geometry = Qt::Rect.new(0, 0, 569, 20)
+    @menubar.geometry = Qt::Rect.new(0, 0, 569, 19)
     mainWindow.setMenuBar(@menubar)
     @statusbar = Qt::StatusBar.new(mainWindow)
     @statusbar.objectName = "statusbar"

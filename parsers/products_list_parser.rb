@@ -10,8 +10,9 @@ class ProductsListParser < BaseParser
   @@subpage_product_uri = 'describecomponents.cgi'
   @@subpage_component_uri = 'describecomponents.cgi?product='
 
-  def initialize(html='')
+  def initialize(html='',gui)
     @results = []
+    num_products = 0
     product_html = load_html(@@subpage_product_uri) if html.length == 0
     product_regex_occurences = product_html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
     product_regex_occurences.each do |product_info|
@@ -32,7 +33,8 @@ class ProductsListParser < BaseParser
         }
         product_result[:components].push(component_result)
       end
-      puts product_result[:components].size()
+      num_products = num_products + 1;
+      gui.progress_bar_increment(num_products,product_regex_occurences.size)
       @results << product_result
     end
   end
