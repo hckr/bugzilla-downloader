@@ -12,9 +12,10 @@ class ProductsListParser < BaseParser
 
   def initialize(html='',gui)
     @results = []
-    num_products = 0
     product_html = load_html(@@subpage_product_uri) if html.length == 0
     product_regex_occurences = product_html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
+    num_products = 0
+    gui.progress_bar_clear()
     product_regex_occurences.each do |product_info|
       product_result = {
         :name => HTMLEntities.new.decode(product_info[1]),

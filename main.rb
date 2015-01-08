@@ -18,7 +18,6 @@ components_parser = nil
 gui = GUIController.new
 
 gui.on_bugzilla_url_select do
-  
   BaseParser.bugzilla_url = gui.bugzilla_url
   products_parser = ProductsListParser.new(gui)
   gui.clear_products_box()
@@ -58,17 +57,17 @@ gui.on_remove_all_components do
 end
 
 gui.on_export do
-
+  number_items = 1
+  num_max = gui.get_already_added_size()
+  gui.progress_bar_clear()
   selected_items_parser = SelectedItemsParser.new
   result = gui.remove_element
-  number_items = 0
+  gui.progress_bar_increment(number_items,num_max)
   while result != nil do
     selected_items_parser.get_data(result)
     result = gui.remove_element
     number_items = number_items + 1
-    puts number_items
-    puts gui.get_already_added_size()
-    gui.progress_bar_increment(number_items,gui.get_already_added_size())
+    gui.progress_bar_increment(number_items,num_max)
   end
   selected_items_parser.export_to_file()
   gui.clear_components_list()

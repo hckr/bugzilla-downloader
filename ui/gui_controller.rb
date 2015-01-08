@@ -150,15 +150,17 @@ class GUIController
     @app.exec
   end
   def progress_bar_increment(number, numMax)
-    bar_width = number * 100.0 / numMax
+    bar_width = (number * 100.0) / numMax
+    puts number
+    puts numMax
     puts bar_width
-    @ui.progressBar.value = bar_width.ceil()
+    @ui.progressBar.value = bar_width
+  end
+  def progress_bar_clear()
+    @ui.progressBar.value = 0
   end
   def get_already_added_size()
     return @already_added.size
   end
-  def disable_all()
-    
-    
-  end
+  
 end
