@@ -44,21 +44,18 @@ class ProductsListParser < BaseParser
     @results.each do |result|
       return result[:subpage_uri] if result[:name] == name
     end
-    return nil
   end
 
   def uri_name_by_product_name(name)
     @results.each do |result|
       return result[:uri_name] if result[:name] == name
     end
-    return nil
   end
 
   def product_info_by_product_name(name)
     @results.each do |result|
       return result if result[:name] == name
     end
-    return nil
   end
 
 end

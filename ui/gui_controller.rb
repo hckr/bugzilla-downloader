@@ -15,7 +15,7 @@ class GUIController
     @ui = Ui_MainWindow.new
     @window = Qt::MainWindow.new
     @ui.setupUi(@window)
-    @already_added = Array.new
+    @already_added = []
   end
 
   def on_bugzilla_url_select()
@@ -44,9 +44,9 @@ class GUIController
 
   def on_remove_selected_component()
     @ui.removeSelectedButton.connect(SIGNAL :clicked) do
-      @already_added.delete_if { |x|
+      @already_added.delete_if do |x|
           x[:product_name] + " - " + x[:name] == selected_component_on_list()
-      }
+      end
       @ui.componentsList.takeItem(@ui.componentsList.currentRow)
     end
   end
@@ -88,7 +88,6 @@ class GUIController
     return @ui.componentsList.currentItem.text.force_encoding('utf-8')
   end
 
-
   def clear_components_box()
     @ui.componentsComboBox.clear()
   end
@@ -107,60 +106,54 @@ class GUIController
 
   def clear_components_list()
     @ui.componentsList.clear()
+    @already_added = []
   end
 
   def add_to_components_list_full(result)
     unless @already_added.include?(result)
       @already_added.push(result)
-      return @ui.componentsList.addItem(selected_product_name + " - " + result[:name]) 
-    else
-      return nil
+      return @ui.componentsList.addItem(selected_product_name + " - " + result[:name])
     end
   end 
 
   def add_to_components_list_by_name(name)
     unless @already_added.include?(selected_product_name + " - " + name)
       @already_added.push(selected_product_name + " - " + name)
-      return @ui.componentsList.addItem(selected_product_name + " - " + name) 
-    else
-      return nil
+      return @ui.componentsList.addItem(selected_product_name + " - " + name)
     end
   end
 
-  def remove_element()
-    if @already_added.length != 0
-      return @already_added.pop
-    end
-    return nil
+  def get_components_to_download()
+    return @already_added
   end
-
-    
 
   def add_to_components_list()
     unless @already_added.include?(selected_product_name + " - " + selected_component_name)
       @already_added.push(selected_product_name + " - " + selected_component_name)
-      return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name) 
-    else
-      return nil
+      return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name)
     end
-    #return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name)
   end
+
   def show()
     @window.show
     @app.exec
   end
-  def progress_bar_increment(number, numMax)
-    bar_width = (number * 100.0) / numMax
-    puts number
-    puts numMax
-    puts bar_width
+
+  def progress_bar_increment(number, num_max)
+    bar_width = (number * 100.0) / num_max
     @ui.progressBar.value = bar_width
   end
+
   def progress_bar_clear()
     @ui.progressBar.value = 0
   end
+
   def get_already_added_size()
     return @already_added.size
+  end
+
+  def export_button_text=(new_text)
+    @ui.exportButton.text = new_text
   end
   
 end

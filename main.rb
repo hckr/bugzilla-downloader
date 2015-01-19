@@ -11,6 +11,7 @@ require_relative 'parsers/components_list_parser'
 require_relative 'parsers/selected_items_parser'
 require_relative 'exporters/json_file_exporter'
 require_relative 'ui/gui_controller'
+require_relative 'downloader'
 
 products_parser = nil
 components_parser = nil
@@ -28,7 +29,7 @@ gui.on_bugzilla_url_select do
 end
 
 gui.on_product_select do
-components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
+  components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
   gui.clear_components_box()
   components_parser.each do |component|
     gui.add_component_to_box(component[:name])
@@ -56,24 +57,32 @@ gui.on_remove_all_components do
 
 end
 
+exporting_thread = nil # przydałoby się to trzymać w lepszym miejscu :/
+
 gui.on_export do
-  number_items = 1
-  num_max = gui.get_already_added_size()
-  gui.progress_bar_clear()
-  selected_items_parser = SelectedItemsParser.new
-  result = gui.remove_element
-  gui.progress_bar_increment(number_items,num_max)
-  while result != nil do
-    selected_items_parser.get_data(result)
-    result = gui.remove_element
-    number_items = number_items + 1
-    gui.progress_bar_increment(number_items,num_max)
+  if not exporting_thread
+    gui.export_button_text = 'Anuluj eksport'
+    gui.progress_bar_clear()
+    downloader = Downloader.new(gui.get_components_to_download())
+    exporting_thread = downloader.download_async(gui.method(:progress_bar_increment)) do |results|
+      # to ogólnie trzeba by później przenieść do jakiegoś eksportera:
+      p results
+      open('exported_file.txt', 'w') do |f|
+        results.each { |x| f.puts(x[:id_uri]) }
+      end
+      gui.clear_components_list()
+      exporting_thread = nil
+      gui.export_button_text = 'Eksportuj'
+      puts 'Zakończono eksport!'
+    end
+  else
+    # chęć anulowania
+    exporting_thread.kill
+    exporting_thread = nil
+    is_exporting = false
+    gui.export_button_text = 'Eksportuj'
+    gui.progress_bar_clear()
   end
-  selected_items_parser.export_to_file()
-  gui.clear_components_list()
-  puts 'Zakończono eksport!'
-  #puts gui.selected_product_name
-  #puts products_parser.subpage_uri_by_product_name(gui.selected_product_name)
 end
 
 gui.show
