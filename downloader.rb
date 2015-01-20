@@ -18,6 +18,7 @@ class Downloader
       all_results = []
       loop do
         component = @components_to_be_downloaded.shift
+        p component
         break unless component
         selected_items_parser = SelectedItemsParser.new(component)
         all_results.push(*selected_items_parser.results)

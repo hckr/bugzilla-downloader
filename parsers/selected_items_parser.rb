@@ -6,23 +6,27 @@
 
 require_relative 'base_parser'
 
+# TO NIE POWINNO SIĘ NAZYWAĆ ITEMS-COŚTAM :P
+
 class SelectedItemsParser < BaseParser
   @@subpage_product_uri = 'buglist.cgi?product='
   @@subpage_component_uri = '&component='
-  @@all_items_uri = '&product=Core&query_format=advanced&order=bug_status%2Cpriority%2Cassigned_to%2Cbug_id&limit=0'
-  
+  @@all_items_uri = '&query_format=advanced&order=bug_status%2Cpriority%2Cassigned_to%2Cbug_id&limit=0'
+  @@special_opts = '&resolution=---&ctype=csv&human=1'
+
   def initialize(item)
     @results = []
-    item_html = load_html(
-      @@subpage_product_uri + item[:product_name] + @@subpage_component_uri + item[:subpage_uri] + @@all_items_uri
+    item_csv = load_html(
+      @@subpage_product_uri + item[:product_name] +
+      @@subpage_component_uri + item[:subpage_uri] +
+      @@all_items_uri + @@special_opts
     )
-    regex_occurences = item_html.scan(/<a href="(show_bug.cgi\?id=(?:.+?))">([0-9]+?)<\/a>/)
-    regex_occurences.each do |item_info|
-      item_result = {
-        :id_uri => item_info[0],
-        :id => item_info[1]
+    item_csv.lines[1..-1].each do |line|
+      new_item = {
+        :id => line.split(',')[0].strip
       }
-      @results << item_result
+      puts new_item[:id]
+      @results << new_item
     end
   end
 end
