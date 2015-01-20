@@ -5,7 +5,7 @@
 =end
 
 require 'nokogiri'
-require 'open-uri'
+require 'curb'
 require 'forwardable'
 require 'uri'
 require 'htmlentities'
@@ -23,12 +23,16 @@ class BaseParser
 
   protected # dalsze metody są protected
 
+  @@curl = Curl::Easy.new("http://www.google.co.uk") do |curl|
+    curl.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0'
+    curl.ssl_verify_peer = false
+    curl.verbose = true
+  end
+
   def load_file(subpage_uri)
-    contents = open(
-      @@bugzilla_url + subpage_uri,
-      'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0' # podszywamy się pod Firefoksa
-    ).read
-    return contents
+    @@curl.url = @@bugzilla_url + subpage_uri
+    @@curl.perform
+    return @@curl.body_str.force_encoding('UTF-8')
   end
 
   def load_dom(subpage_uri)
