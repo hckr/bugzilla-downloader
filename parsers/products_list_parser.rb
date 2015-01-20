@@ -12,7 +12,7 @@ class ProductsListParser < BaseParser
 
   def initialize(html='',gui)
     @results = []
-    product_html = load_html(@@subpage_product_uri) if html.length == 0
+    product_html = load_file(@@subpage_product_uri) if html.length == 0
     product_regex_occurences = product_html.scan(/<a href="(describecomponents.cgi\?product=(?:.+?))">(.+?)<\/a>/)
     num_products = 0
     gui.progress_bar_clear()
@@ -23,7 +23,7 @@ class ProductsListParser < BaseParser
         :subpage_uri => product_info[0],
         :components => Array.new
       }
-      component_html = load_html(@@subpage_component_uri + product_result[:uri_name])
+      component_html = load_file(@@subpage_component_uri + product_result[:uri_name])
       components_regex_occurences = component_html.scan(/href="buglist.cgi\?product=#{product_result[:uri_name]}&amp;component=(.+?)">(.+?)<\/a>/)
       components_regex_occurences.each do |component_info|
         component_result = {

@@ -23,16 +23,16 @@ class BaseParser
 
   protected # dalsze metody są protected
 
-  def load_html(subpage_uri)
-    html = open(
+  def load_file(subpage_uri)
+    contents = open(
       @@bugzilla_url + subpage_uri,
       'User-Agent' => 'Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0' # podszywamy się pod Firefoksa
     ).read
-    return html
+    return contents
   end
 
   def load_dom(subpage_uri)
-    html = load_html(subpage_uri)
+    html = load_file(subpage_uri)
     dom = Nokogiri::HTML(html)
     dom.encoding = 'UTF-8'
     return dom

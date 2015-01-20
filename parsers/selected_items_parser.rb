@@ -16,7 +16,7 @@ class SelectedItemsParser < BaseParser
 
   def initialize(item)
     @results = []
-    item_csv = load_html(
+    item_csv = load_file(
       @@subpage_product_uri + item[:product_name] +
       @@subpage_component_uri + item[:subpage_uri] +
       @@all_items_uri + @@special_opts
