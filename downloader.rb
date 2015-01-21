@@ -25,6 +25,7 @@ class Downloader
         number_items = number_items + 1
         progress_update.call(number_items, num_max)
         puts number_items.to_s + ', ' + num_max.to_s
+        # sleep 1.5
       end
       success_callback.call(all_results)
     end

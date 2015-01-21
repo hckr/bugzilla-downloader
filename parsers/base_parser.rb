@@ -23,10 +23,11 @@ class BaseParser
 
   protected # dalsze metody są protected
 
-  @@curl = Curl::Easy.new("http://www.google.co.uk") do |curl|
+  @@curl = Curl::Easy.new(@@bugzilla_url) do |curl|
     curl.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/20100101 Firefox/32.0'
     curl.ssl_verify_peer = false
     curl.verbose = true
+    curl.follow_location = true
   end
 
   def load_file(subpage_uri)

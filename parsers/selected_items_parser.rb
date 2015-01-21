@@ -21,12 +21,15 @@ class SelectedItemsParser < BaseParser
       @@subpage_component_uri + item[:subpage_uri] +
       @@all_items_uri + @@special_opts
     )
-    item_csv.lines[1..-1].each do |line|
-      new_item = {
-        :id => line.split(',')[0].strip
-      }
-      puts new_item[:id]
-      @results << new_item
+    without_first_line = item_csv.lines[1..-1]
+    if without_first_line
+      without_first_line.each do |line|
+        new_item = {
+          :id => line.split(',')[0].strip
+        }
+        puts new_item[:id]
+        @results << new_item
+      end
     end
   end
 end
