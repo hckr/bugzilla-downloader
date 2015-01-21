@@ -9,6 +9,7 @@ require_relative 'parsers/base_parser'
 require_relative 'parsers/products_list_parser'
 require_relative 'parsers/components_list_parser'
 require_relative 'parsers/selected_items_parser'
+require_relative 'parsers/detail_item_parser'
 require_relative 'exporters/json_file_exporter'
 require_relative 'ui/gui_controller'
 require_relative 'downloader'
@@ -63,16 +64,40 @@ gui.on_export do
   if not exporting_thread
     gui.export_button_text = 'Anuluj eksport'
     gui.progress_bar_clear()
+    
+    author = gui.author()
+    phrase = gui.phrase()
+    from_date = 0
+    to_date = 0
+    if (gui.is_date_selected())
+        from = gui.from_date.split('.').map(&:to_i)
+        to = gui.to_date.split('.').map(&:to_i)
+        from_date = (10000 * from[2]) + (100 * from[1]) + from[0]
+        to_date = (10000 * to[2]) + (100 * to[1]) + to[0]
+    end
+
     downloader = Downloader.new(gui.get_components_to_download())
+    puts author
     exporting_thread = downloader.download_async(gui.method(:progress_bar_increment)) do |results|
       # to ogólnie trzeba by później przenieść do jakiegoś eksportera:
-      p results
       open('exported_file.txt', 'w') do |f|
-        results.each { |x| f.puts(x[:id_uri]) }
+        results.each { |x|
+
+          phr = x[:summary].to_s.downcase
+          #puts x[:changed]
+          date = x[:changed].split(/[ :-]/).map(&:to_i)
+          current_date = date[0] * 10000 + date[1] * 100 + date[2]
+          if ((author.empty? || x[:assignee] == author) && (phrase.empty?|| phr.downcase[phrase]) && ((from_date == 0) || (from_date <= current_date && to_date >= current_date)))
+            json_file =  JSON.generate(x)
+            f.puts(json_file) 
+          end
+        }
       end
+      #puts to_date
       gui.clear_components_list()
       exporting_thread = nil
       gui.export_button_text = 'Eksportuj'
+
       puts 'Zakończono eksport!'
     end
   else

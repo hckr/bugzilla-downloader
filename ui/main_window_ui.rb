@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: r. sty 7 14:50:36 2015
+** Created: r. sty 21 15:36:55 2015
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -28,17 +28,17 @@ class Ui_MainWindow
     attr_reader :removeSelectedButton
     attr_reader :removeAllButton
     attr_reader :horizontalLayout_5
-    attr_reader :radioButton
+    attr_reader :isDateButton
     attr_reader :label_4
-    attr_reader :dateEdit
+    attr_reader :dateFromEdit
     attr_reader :label_5
-    attr_reader :dateEdit_2
+    attr_reader :dateToEdit
     attr_reader :horizontalLayout_6
     attr_reader :label_6
-    attr_reader :lineEdit
+    attr_reader :authorEdit
     attr_reader :horizontalLayout_7
     attr_reader :label_7
-    attr_reader :lineEdit_2
+    attr_reader :phraseEdit
     attr_reader :horizontalLayout_3
     attr_reader :exportButton
     attr_reader :menubar
@@ -166,15 +166,15 @@ class Ui_MainWindow
 
     @horizontalLayout_5 = Qt::HBoxLayout.new()
     @horizontalLayout_5.objectName = "horizontalLayout_5"
-    @radioButton = Qt::RadioButton.new(@centralwidget)
-    @radioButton.objectName = "radioButton"
+    @isDateButton = Qt::RadioButton.new(@centralwidget)
+    @isDateButton.objectName = "isDateButton"
     @sizePolicy3 = Qt::SizePolicy.new(Qt::SizePolicy::Maximum, Qt::SizePolicy::Fixed)
     @sizePolicy3.setHorizontalStretch(0)
     @sizePolicy3.setVerticalStretch(0)
-    @sizePolicy3.heightForWidth = @radioButton.sizePolicy.hasHeightForWidth
-    @radioButton.sizePolicy = @sizePolicy3
+    @sizePolicy3.heightForWidth = @isDateButton.sizePolicy.hasHeightForWidth
+    @isDateButton.sizePolicy = @sizePolicy3
 
-    @horizontalLayout_5.addWidget(@radioButton)
+    @horizontalLayout_5.addWidget(@isDateButton)
 
     @label_4 = Qt::Label.new(@centralwidget)
     @label_4.objectName = "label_4"
@@ -186,15 +186,15 @@ class Ui_MainWindow
 
     @horizontalLayout_5.addWidget(@label_4)
 
-    @dateEdit = Qt::DateEdit.new(@centralwidget)
-    @dateEdit.objectName = "dateEdit"
+    @dateFromEdit = Qt::DateEdit.new(@centralwidget)
+    @dateFromEdit.objectName = "dateFromEdit"
     @sizePolicy5 = Qt::SizePolicy.new(Qt::SizePolicy::Fixed, Qt::SizePolicy::Fixed)
     @sizePolicy5.setHorizontalStretch(0)
     @sizePolicy5.setVerticalStretch(0)
-    @sizePolicy5.heightForWidth = @dateEdit.sizePolicy.hasHeightForWidth
-    @dateEdit.sizePolicy = @sizePolicy5
+    @sizePolicy5.heightForWidth = @dateFromEdit.sizePolicy.hasHeightForWidth
+    @dateFromEdit.sizePolicy = @sizePolicy5
 
-    @horizontalLayout_5.addWidget(@dateEdit)
+    @horizontalLayout_5.addWidget(@dateFromEdit)
 
     @label_5 = Qt::Label.new(@centralwidget)
     @label_5.objectName = "label_5"
@@ -203,12 +203,12 @@ class Ui_MainWindow
 
     @horizontalLayout_5.addWidget(@label_5)
 
-    @dateEdit_2 = Qt::DateEdit.new(@centralwidget)
-    @dateEdit_2.objectName = "dateEdit_2"
-    @sizePolicy5.heightForWidth = @dateEdit_2.sizePolicy.hasHeightForWidth
-    @dateEdit_2.sizePolicy = @sizePolicy5
+    @dateToEdit = Qt::DateEdit.new(@centralwidget)
+    @dateToEdit.objectName = "dateToEdit"
+    @sizePolicy5.heightForWidth = @dateToEdit.sizePolicy.hasHeightForWidth
+    @dateToEdit.sizePolicy = @sizePolicy5
 
-    @horizontalLayout_5.addWidget(@dateEdit_2)
+    @horizontalLayout_5.addWidget(@dateToEdit)
 
     @horizontalLayout_6 = Qt::HBoxLayout.new()
     @horizontalLayout_6.objectName = "horizontalLayout_6"
@@ -217,10 +217,10 @@ class Ui_MainWindow
 
     @horizontalLayout_6.addWidget(@label_6)
 
-    @lineEdit = Qt::LineEdit.new(@centralwidget)
-    @lineEdit.objectName = "lineEdit"
+    @authorEdit = Qt::LineEdit.new(@centralwidget)
+    @authorEdit.objectName = "authorEdit"
 
-    @horizontalLayout_6.addWidget(@lineEdit)
+    @horizontalLayout_6.addWidget(@authorEdit)
 
 
     @horizontalLayout_5.addLayout(@horizontalLayout_6)
@@ -235,10 +235,10 @@ class Ui_MainWindow
 
     @horizontalLayout_7.addWidget(@label_7)
 
-    @lineEdit_2 = Qt::LineEdit.new(@centralwidget)
-    @lineEdit_2.objectName = "lineEdit_2"
+    @phraseEdit = Qt::LineEdit.new(@centralwidget)
+    @phraseEdit.objectName = "phraseEdit"
 
-    @horizontalLayout_7.addWidget(@lineEdit_2)
+    @horizontalLayout_7.addWidget(@phraseEdit)
 
 
     @verticalLayout.addLayout(@horizontalLayout_7)
@@ -256,7 +256,7 @@ class Ui_MainWindow
     mainWindow.centralWidget = @centralwidget
     @menubar = Qt::MenuBar.new(mainWindow)
     @menubar.objectName = "menubar"
-    @menubar.geometry = Qt::Rect.new(0, 0, 569, 19)
+    @menubar.geometry = Qt::Rect.new(0, 0, 569, 20)
     mainWindow.setMenuBar(@menubar)
     @statusbar = Qt::StatusBar.new(mainWindow)
     @statusbar.objectName = "statusbar"
@@ -282,7 +282,7 @@ class Ui_MainWindow
     @addAllToListButton.text = Qt::Application.translate("MainWindow", "Dodaj wszystkie", nil, Qt::Application::UnicodeUTF8)
     @removeSelectedButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 zaznaczone", nil, Qt::Application::UnicodeUTF8)
     @removeAllButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 wszystkie", nil, Qt::Application::UnicodeUTF8)
-    @radioButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)
+    @isDateButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)
     @label_4.text = Qt::Application.translate("MainWindow", "Od:", nil, Qt::Application::UnicodeUTF8)
     @label_5.text = Qt::Application.translate("MainWindow", "Do:", nil, Qt::Application::UnicodeUTF8)
     @label_6.text = Qt::Application.translate("MainWindow", "Autor:", nil, Qt::Application::UnicodeUTF8)

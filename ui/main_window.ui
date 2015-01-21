@@ -141,7 +141,7 @@
     <item>
      <widget class="QProgressBar" name="progressBar">
       <property name="value">
-       <number>24</number>
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -169,7 +169,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="isDateButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -195,7 +195,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit">
+       <widget class="QDateEdit" name="dateFromEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -218,7 +218,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit_2">
+       <widget class="QDateEdit" name="dateToEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -237,7 +237,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="authorEdit"/>
         </item>
        </layout>
       </item>
@@ -253,7 +253,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="phraseEdit"/>
       </item>
      </layout>
     </item>
@@ -276,7 +276,7 @@
      <x>0</x>
      <y>0</y>
      <width>569</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

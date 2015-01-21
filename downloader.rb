@@ -31,5 +31,4 @@ class Downloader
     end
     return thread
   end
-
 end

@@ -68,6 +68,26 @@ class GUIController
     return @ui.bugzillaURLLineEdit.displayText
   end
 
+  def author()
+    return @ui.authorEdit.displayText
+  end
+
+  def phrase()
+    return @ui.phraseEdit.displayText
+  end
+
+  def is_date_selected()
+    return @ui.isDateButton.isChecked()
+  end
+
+  def from_date()
+    return @ui.dateFromEdit.date().toString("dd.MM.yyyy")
+  end
+
+  def to_date()
+    return @ui.dateToEdit.date().toString("dd.MM.yyyy")
+  end
+
   def clear_products_box()
     @ui.productsComboBox.clear()
   end
