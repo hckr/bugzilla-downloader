@@ -26,13 +26,13 @@ class SelectedItemsParser < BaseParser
     if without_first_line
       without_first_line.each do |line|
         new_item = {
-          :id => line.split(',')[0].strip,
-          :product => line.split(',')[1].strip[0..-1],
-          :component => line.split(/","/)[1].strip[0..-1],
-          :assignee => line.split(/","/)[2].strip[0..-1],
-          :status => line.split(/","/)[3].strip[0..-1],
-          :summary => line.split(/","/)[5].strip[0..-1],
-          :changed => line.split(/","/)[6].strip[0..-2]
+          :id => line.split(',')[0].strip
+          #:product => line.split(',')[1].strip[1..-2],
+          #:component => line.split(/","/)[1].strip[0..-1],
+          #:assignee => line.split(/","/)[2].strip[0..-1],
+          #:status => line.split(/","/)[3].strip[0..-1],
+          #:summary => line.split(/","/)[5].strip[0..-1],
+          #:changed => line.split(/","/)[6].strip[0..-2]
         }
         if (count == 0)
           count = 1

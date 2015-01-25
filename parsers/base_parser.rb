@@ -9,6 +9,7 @@ require 'curb'
 require 'forwardable'
 require 'uri'
 require 'htmlentities'
+require 'csv'
 
 class BaseParser
   include Enumerable
@@ -28,6 +29,7 @@ class BaseParser
     curl.ssl_verify_peer = false
     curl.verbose = true
     curl.follow_location = true
+    curl.timeout = 30
   end
 
   def load_file(subpage_uri)

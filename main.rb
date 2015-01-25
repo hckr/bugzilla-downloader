@@ -77,20 +77,22 @@ gui.on_export do
     end
 
     downloader = Downloader.new(gui.get_components_to_download())
-    puts author
     exporting_thread = downloader.download_async(gui.method(:progress_bar_increment)) do |results|
       # to ogólnie trzeba by później przenieść do jakiegoś eksportera:
       open('exported_file.txt', 'w') do |f|
         results.each { |x|
 
-          phr = x[:summary].to_s.downcase
+          detail_item_parser = DetailItemParser.new(x[:id])
+          json_file = JSON.pretty_generate(detail_item_parser.get_all_info_array())
+          f.puts(json_file)
+          #phr = x[:summary].to_s.downcase
           #puts x[:changed]
-          date = x[:changed].split(/[ :-]/).map(&:to_i)
-          current_date = date[0] * 10000 + date[1] * 100 + date[2]
-          if ((author.empty? || x[:assignee] == author) && (phrase.empty?|| phr.downcase[phrase]) && ((from_date == 0) || (from_date <= current_date && to_date >= current_date)))
-            json_file =  JSON.generate(x)
-            f.puts(json_file) 
-          end
+          #date = x[:changed].split(/[ :-]/).map(&:to_i)
+          #current_date = date[0] * 10000 + date[1] * 100 + date[2]
+          #if ((author.empty? || x[:assignee] == author) && (phrase.empty?|| phr.downcase[phrase]) && ((from_date == 0) || (from_date <= current_date && to_date >= current_date)))
+          #  json_file =  JSON.generate(x)
+          #  f.puts(json_file) 
+          #end
         }
       end
       #puts to_date
