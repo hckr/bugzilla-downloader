@@ -69,45 +69,27 @@ gui.on_export do
     phrase = gui.phrase()
     from_date = 0
     to_date = 0
+
+    entered_data = {
+      :author => gui.author(),
+      :phrase => gui.phrase(),
+      :from_date => 0,
+      :to_date => 0
+    }
+
     if (gui.is_date_selected())
         from = gui.from_date.split('.').map(&:to_i)
         to = gui.to_date.split('.').map(&:to_i)
-        from_date = (10000 * from[2]) + (100 * from[1]) + from[0]
-        to_date = (10000 * to[2]) + (100 * to[1]) + to[0]
+        entered_data[:from_date] = (10000 * from[2]) + (100 * from[1]) + from[0]
+        entered_data[:to_date] = (10000 * to[2]) + (100 * to[1]) + to[0]
     end
 
     downloader = Downloader.new(gui.get_components_to_download())
     final_json = Hash.new
-    exporting_thread = downloader.download_async(gui.method(:progress_bar_increment)) do |results|
+    exporting_thread = downloader.download_async(gui.method(:progress_bar_increment), entered_data) do |final_json|
       # to ogólnie trzeba by później przenieść do jakiegoś eksportera:
-      open('exported_file.txt', 'w') do |f|
-        results.each { |x|
-
-          detail_item_parser = DetailItemParser.new(x[:id])
-          puts "2"
-          single_result = detail_item_parser.get_all_info_array
-          puts "3"
-          result_author_full = single_result[:people]["reporter"][:fullname]
-          puts "4"
-          result_author_nick = single_result[:people]["reporter"][:nickname]
-          final_date = single_result[:fields]["creation_ts"][:value].split(/[ :-]/).map(&:to_i)
-          puts "6"
-          final_date_sum = final_date[0] * 10000 + final_date[1] * 100 + final_date[2]
-          puts "7"
-          result_phrase = single_result[:fields]["short_desc"][:value].to_s.downcase
-          puts "8"
-          if ((author.empty? || result_author_full == author || result_author_nick == author) && (phrase.empty? || result_phrase.downcase[phrase]) && (from_date <= final_date_sum && to_date >= final_date_sum)) 
-            final_json[x[:id]] = detail_item_parser.get_all_info_array()
-          end
-          #phr = x[:summary].to_s.downcase
-          #puts x[:changed]
-          #date = x[:changed].split(/[ :-]/).map(&:to_i)
-          #current_date = date[0] * 10000 + date[1] * 100 + date[2]
-          #if ((author.empty? || x[:assignee] == author) && (phrase.empty?|| phr.downcase[phrase]) && ((from_date == 0) || (from_date <= current_date && to_date >= current_date)))
-          #  json_file =  JSON.generate(x)
-          #  f.puts(json_file) 
-          #end
-        }
+      open('exported_file.json', 'w') do |f|
+          
         json_file = json_file = JSON.pretty_generate(final_json)
         f.puts(json_file)
       end
