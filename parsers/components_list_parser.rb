@@ -29,4 +29,8 @@ class ComponentsListParser < BaseParser
     return nil
   end
 
+  def get_all()
+    return @results
+  end
+
 end

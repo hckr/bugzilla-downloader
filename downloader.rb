@@ -11,6 +11,23 @@ class Downloader
     @components_to_be_downloaded = components_to_be_downloaded
   end
 
+  def download_products(gui, products_parser, &success_callback)
+    thread = Thread.new do
+
+      gui.change_button_state(false)
+      gui.clear_products_box()
+      gui.clear_components_list()
+      gui.progress_bar_clear()
+      BaseParser.bugzilla_url = gui.bugzilla_url
+      products_parser = ProductsListParser.new(gui)
+      products_parser.each do |product|
+        gui.add_product_to_box(product[:name])
+      end
+      success_callback.call(products_parser)
+    end
+    return thread
+  end
+
   def download_async(progress_update, data, &success_callback)
     thread = Thread.new do
       number_items = 0
@@ -25,7 +42,6 @@ class Downloader
         
         all_results.push(*selected_items_parser.results)
         number_items = number_items + 1
-        progress_update.call(number_items, num_max)
         puts number_items.to_s + ', ' + num_max.to_s
         # sleep 1.5
       end
@@ -43,8 +59,7 @@ class Downloader
           result_date = single_result[:fields]["creation_ts"][:value].split(/[ :-]/).map(&:to_i)
           result_date_sum = result_date[0] * 10000 + result_date[1] * 100 + result_date[2]
           result_phrase = single_result[:fields]["short_desc"][:value].to_s.downcase
-          
-          if ((data[:author].empty? || result_author_full.downcase[data[:author]] || result_author_nick.downcase[data[:author]]) && (data[:phrase].empty? || result_phrase.downcase[data[:phrase]]) && (data[:from_date] == 0 || (data[:from_date] <= result_date_sum && data[:to_date] >= result_date_sum)))
+          if ((data[:author].empty? || (result_author_full != nil && result_author_full.downcase[data[:author]]) || (result_author_full != nil && result_author_nick.downcase[data[:author]])) && (data[:phrase].empty? || result_phrase.downcase[data[:phrase]]) && (data[:from_date] == 0 || (data[:from_date] <= result_date_sum && data[:to_date] >= result_date_sum)))
             final_json[x[:id]] = detail_item_parser.get_all_info_array()
           end
           number_items = number_items + 1

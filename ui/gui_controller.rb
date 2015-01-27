@@ -16,12 +16,35 @@ class GUIController
     @window = Qt::MainWindow.new
     @ui.setupUi(@window)
     @already_added = []
+    change_button_state(false)
+    @ui.loadProductsButton.setEnabled(true)
+    @ui.bugzillaURLLineEdit.setEnabled(true)
   end
 
   def on_bugzilla_url_select()
-    @ui.loadProductsButton.connect(SIGNAL :clicked) do
+    @ui.loadProductsButton.connect(SIGNAL('clicked()')) do
+      change_button_state(false)
       yield
     end
+  end
+
+  def change_button_state(state)
+    @ui.loadProductsButton.setEnabled(state)
+    @ui.addToListButton.setEnabled(state)
+    @ui.addAllToListButton.setEnabled(state)
+    @ui.removeSelectedButton.setEnabled(state)
+    @ui.exportButton.setEnabled(state)
+    @ui.removeAllButton.setEnabled(state)
+    @ui.exportButton.setEnabled(state)
+    @ui.bugzillaURLLineEdit.setEnabled(state)
+    @ui.authorEdit.setEnabled(state)
+    @ui.phraseEdit.setEnabled(state)
+    @ui.productsComboBox.setEnabled(state)
+    @ui.componentsComboBox.setEnabled(state)
+    @ui.isDateButton.setEnabled(state)
+    @ui.dateFromEdit.setEnabled(state)
+    @ui.dateToEdit.setEnabled(state)
+    @ui.componentsList.setEnabled(state)
   end
 
   def on_product_select()
@@ -60,6 +83,7 @@ class GUIController
 
   def on_export()
     @ui.exportButton.connect(SIGNAL :clicked) do
+      change_button_state(false)
       yield
     end
   end
@@ -90,6 +114,7 @@ class GUIController
 
   def clear_products_box()
     @ui.productsComboBox.clear()
+    @ui.componentsComboBox.clear()
   end
 
   def add_product_to_box(name)
@@ -101,10 +126,16 @@ class GUIController
   end
 
   def selected_product_name()
-    return @ui.productsComboBox.currentText.force_encoding('utf-8')
+    if (@ui.productsComboBox.currentIndex != -1)
+      return @ui.productsComboBox.currentText.force_encoding('utf-8')
+    end
+    return nil
   end
 
   def selected_component_on_list()
+    if (!@ui.componentsList.currentItem)
+      return nil
+    end
     return @ui.componentsList.currentItem.text.force_encoding('utf-8')
   end
 
@@ -130,9 +161,11 @@ class GUIController
   end
 
   def add_to_components_list_full(result)
-    unless @already_added.include?(result)
-      @already_added.push(result)
-      return @ui.componentsList.addItem(selected_product_name + " - " + result[:name])
+    if selected_product_name != nil
+      unless @already_added.include?(result)
+        @already_added.push(result)
+        return @ui.componentsList.addItem(selected_product_name + " - " + result[:name])
+      end
     end
   end 
 
@@ -148,9 +181,11 @@ class GUIController
   end
 
   def add_to_components_list()
-    unless @already_added.include?(selected_product_name + " - " + selected_component_name)
-      @already_added.push(selected_product_name + " - " + selected_component_name)
-      return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name)
+    if selected_product_name != nil
+      unless @already_added.include?(selected_product_name + " - " + selected_component_name)
+        @already_added.push(selected_product_name + " - " + selected_component_name)
+        return @ui.componentsList.addItem(selected_product_name + " - " + selected_component_name)
+      end
     end
   end
 
@@ -165,7 +200,7 @@ class GUIController
   end
 
   def progress_bar_clear()
-    @ui.progressBar.value = 0
+    #@ui.progressBar.value = 0
   end
 
   def get_already_added_size()

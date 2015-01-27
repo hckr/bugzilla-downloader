@@ -20,33 +20,42 @@ components_parser = nil
 gui = GUIController.new
 
 gui.on_bugzilla_url_select do
-  BaseParser.bugzilla_url = gui.bugzilla_url
-  products_parser = ProductsListParser.new(gui)
-  gui.clear_products_box()
-  products_parser.each do |product|
-    gui.add_product_to_box(product[:name])
+    
+  downloader = Downloader.new(nil)
+  download_thread = downloader.download_products(gui, products_parser) do |parser|
+    products_parser = parser
+    gui.change_button_state(true)
   end
-  # JSONFileExporter.new('products_list.json').save(products_parser.results)
+    
+    # JSONFileExporter.new('products_list.json').save(products_parser.results)
 end
 
 gui.on_product_select do
-  components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
-  gui.clear_components_box()
-  components_parser.each do |component|
-    gui.add_component_to_box(component[:name])
+  if (gui.selected_product_name)
+    components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
+    gui.clear_components_box()
+    components_parser.each do |component|
+      gui.add_component_to_box(component[:name])
+    end
+  else
+    gui.change_button_state(false)
   end
 end
 
 gui.on_add_to_list_select do
-  components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
-  gui.add_to_components_list_full(components_parser.component_info_by_component_name(gui.selected_component_name))
+  if (gui.selected_product_name != nil)
+    components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
+    gui.add_to_components_list_full(components_parser.component_info_by_component_name(gui.selected_component_name))
+  end
 end
 
 gui.on_add_all_to_list_select do
-  components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
-  components_parser.each do |component|
-    #gui.add_to_components_list_by_name(component[:name])
-    gui.add_to_components_list_full(component)
+  if (gui.selected_product_name != nil)
+    components_parser = ComponentsListParser.new(products_parser.product_info_by_product_name(gui.selected_product_name))
+    components_parser.each do |component|
+      #gui.add_to_components_list_by_name(component[:name])
+      gui.add_to_components_list_full(component)
+    end
   end
 end
 
@@ -62,8 +71,6 @@ exporting_thread = nil # przydałoby się to trzymać w lepszym miejscu :/
 
 gui.on_export do
   if not exporting_thread
-    gui.export_button_text = 'Anuluj eksport'
-    gui.progress_bar_clear()
     
     author = gui.author()
     phrase = gui.phrase()
@@ -97,7 +104,7 @@ gui.on_export do
       gui.clear_components_list()
       exporting_thread = nil
       gui.export_button_text = 'Eksportuj'
-
+      gui.change_button_state(true)
       puts 'Zakończono eksport!'
     end
   else

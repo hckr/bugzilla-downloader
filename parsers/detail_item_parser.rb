@@ -61,7 +61,7 @@ class DetailItemParser < BaseParser
             :date => date,
             :text => text
           }
-          @results[:comments][comment[:id]] = comment
+          @results[:comments][comment[:date]] = comment
           current_is_comment = false
         end
       elsif (current_is_attachment)
@@ -82,7 +82,7 @@ class DetailItemParser < BaseParser
         elsif (item_info[0] == "attacher")
           attacher = item_info[2]
           attachment = {
-            :id => id,
+            :link => 'attachment.cgi?id=' + id,
             :date => date,
             :last_modified => last_modified,
             :description => description,
@@ -91,24 +91,22 @@ class DetailItemParser < BaseParser
             :file_size => file_size,
             :attacher => attacher
           }
-          @results[:attachments][attachment[:id]] = attachment
+          @results[:attachments][id] = attachment
           current_is_attachment = false
         end
       elsif (item_info[0] == "reporter" || item_info[0] == "assigned_to")
         person = {
-          :state => item_info[0],
           :fullname => item_info[1],
           :nickname => item_info[2]
         }
-        @results[:people][person[:state]] = person
+        @results[:people][item_info[0]] = person
       elsif (item_info[0] == "cc")
         @results[:ccs][item_info[2]] = item_info[2]
       else  
         field = {
-          :name => item_info[0],
           :value => item_info[2]
         }
-        @results[:fields][field[:name]] = field
+        @results[:fields][item_info[0]] = field
       end
     end
   end
