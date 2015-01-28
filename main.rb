@@ -10,7 +10,6 @@ require_relative 'parsers/products_list_parser'
 require_relative 'parsers/components_list_parser'
 require_relative 'parsers/selected_items_parser'
 require_relative 'parsers/detail_item_parser'
-require_relative 'exporters/json_file_exporter'
 require_relative 'ui/gui_controller'
 require_relative 'downloader'
 
@@ -20,7 +19,6 @@ components_parser = nil
 gui = GUIController.new
 
 gui.on_bugzilla_url_select do
-    
   downloader = Downloader.new(nil)
   download_thread = downloader.download_products(gui, products_parser) do |parser|
     products_parser = parser
@@ -33,8 +31,6 @@ gui.on_bugzilla_url_select do
       gui.set_message("Błąd wczytywania serwera. Sprawdź połączenie z internetem i poprawność adresu.")
     end
   end
-    
-    # JSONFileExporter.new('products_list.json').save(products_parser.results)
 end
 
 gui.on_product_select do

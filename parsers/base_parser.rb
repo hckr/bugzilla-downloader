@@ -4,7 +4,6 @@
   Klasa bazowa dla parserów
 =end
 
-require 'nokogiri'
 require 'curb'
 require 'forwardable'
 require 'uri'
@@ -35,7 +34,6 @@ class BaseParser
     curl.timeout = 30
   end
 
-
   def url_available?(subpage_uri)
     @@curl.url = @@bugzilla_url + subpage_uri
     begin
@@ -50,13 +48,6 @@ class BaseParser
     @@curl.url = @@bugzilla_url + subpage_uri
     @@curl.perform
     return @@curl.body_str.force_encoding('UTF-8')
-  end
-
-  def load_dom(subpage_uri)
-    html = load_file(subpage_uri)
-    dom = Nokogiri::HTML(html)
-    dom.encoding = 'UTF-8'
-    return dom
   end
 
 end
