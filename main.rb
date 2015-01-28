@@ -24,7 +24,14 @@ gui.on_bugzilla_url_select do
   downloader = Downloader.new(nil)
   download_thread = downloader.download_products(gui, products_parser) do |parser|
     products_parser = parser
-    gui.change_button_state(true)
+    p parser
+    if (parser.results.size != 0)
+      gui.change_button_state(true)
+      gui.set_message("Wybierz komponenty.")
+    else
+      gui.reset_buttons
+      gui.set_message("Błąd wczytywania serwera. Sprawdź połączenie z internetem i poprawność adresu.")
+    end
   end
     
     # JSONFileExporter.new('products_list.json').save(products_parser.results)
@@ -91,6 +98,7 @@ gui.on_export do
         entered_data[:to_date] = (10000 * to[2]) + (100 * to[1]) + to[0]
     end
 
+    gui.set_message("Trwa pobieranie wybranych danych. Proszę czekać...")
     downloader = Downloader.new(gui.get_components_to_download())
     final_json = Hash.new
     exporting_thread = downloader.download_async(gui.method(:progress_bar_increment), entered_data) do |final_json|
@@ -105,7 +113,7 @@ gui.on_export do
       exporting_thread = nil
       gui.export_button_text = 'Eksportuj'
       gui.change_button_state(true)
-      puts 'Zakończono eksport!'
+      gui.set_message("Zakończono eksport!")
     end
   else
     # chęć anulowania

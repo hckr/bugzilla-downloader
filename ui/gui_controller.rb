@@ -19,11 +19,17 @@ class GUIController
     change_button_state(false)
     @ui.loadProductsButton.setEnabled(true)
     @ui.bugzillaURLLineEdit.setEnabled(true)
+    @ui.infoLabel.setText("Wpisz poprawny adres")
+  end
+
+  def reset_buttons()
+    change_button_state(false)
+    @ui.loadProductsButton.setEnabled(true)
+    @ui.bugzillaURLLineEdit.setEnabled(true)
   end
 
   def on_bugzilla_url_select()
     @ui.loadProductsButton.connect(SIGNAL('clicked()')) do
-      change_button_state(false)
       yield
     end
   end
@@ -115,6 +121,10 @@ class GUIController
   def clear_products_box()
     @ui.productsComboBox.clear()
     @ui.componentsComboBox.clear()
+  end
+
+  def set_message(dialog)
+    @ui.infoLabel.setText(dialog)
   end
 
   def add_product_to_box(name)

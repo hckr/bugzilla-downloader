@@ -19,6 +19,9 @@ class BaseParser
   
   @@bugzilla_url = '' # zmienna klasowa ustawiana w main.rb
   def self.bugzilla_url=(url)
+    if url[-1..-1] != '/'
+      url = url + '/'
+    end
     @@bugzilla_url = url
   end
 
@@ -30,6 +33,17 @@ class BaseParser
     curl.verbose = true
     curl.follow_location = true
     curl.timeout = 30
+  end
+
+
+  def url_available?(subpage_uri)
+    @@curl.url = @@bugzilla_url + subpage_uri
+    begin
+      @@curl.perform
+    rescue Curl::Err::CurlError
+      return false
+    end
+    return true
   end
 
   def load_file(subpage_uri)

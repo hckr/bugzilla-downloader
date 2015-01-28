@@ -1,7 +1,7 @@
 =begin
 ** Form generated from reading ui file 'main_window.ui'
 **
-** Created: r. sty 21 15:36:55 2015
+** Created: r. sty 28 18:19:03 2015
 **      by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -23,6 +23,7 @@ class Ui_MainWindow
     attr_reader :componentsComboBox
     attr_reader :addAllToListButton
     attr_reader :progressBar
+    attr_reader :infoLabel
     attr_reader :componentsList
     attr_reader :horizontalLayout_8
     attr_reader :removeSelectedButton
@@ -143,6 +144,13 @@ class Ui_MainWindow
     @progressBar.value = 0
 
     @verticalLayout.addWidget(@progressBar)
+
+    @infoLabel = Qt::Label.new(@centralwidget)
+    @infoLabel.objectName = "infoLabel"
+    @infoLabel.layoutDirection = Qt::LeftToRight
+    @infoLabel.alignment = Qt::LeftToRight
+
+    @verticalLayout.addWidget(@infoLabel)
 
     @componentsList = Qt::ListWidget.new(@centralwidget)
     @componentsList.objectName = "componentsList"
@@ -280,6 +288,7 @@ class Ui_MainWindow
     @addToListButton.text = Qt::Application.translate("MainWindow", "Dodaj do listy", nil, Qt::Application::UnicodeUTF8)
     @label_3.text = Qt::Application.translate("MainWindow", "Wybierz komponent:", nil, Qt::Application::UnicodeUTF8)
     @addAllToListButton.text = Qt::Application.translate("MainWindow", "Dodaj wszystkie", nil, Qt::Application::UnicodeUTF8)
+    @infoLabel.text = Qt::Application.translate("MainWindow", "TextLabel", nil, Qt::Application::UnicodeUTF8)
     @removeSelectedButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 zaznaczone", nil, Qt::Application::UnicodeUTF8)
     @removeAllButton.text = Qt::Application.translate("MainWindow", "Usu\305\204 wszystkie", nil, Qt::Application::UnicodeUTF8)
     @isDateButton.text = Qt::Application.translate("MainWindow", "Data", nil, Qt::Application::UnicodeUTF8)

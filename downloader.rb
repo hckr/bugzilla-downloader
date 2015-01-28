@@ -13,7 +13,7 @@ class Downloader
 
   def download_products(gui, products_parser, &success_callback)
     thread = Thread.new do
-
+      gui.set_message("Trwa pobieranie listy produktów. Proszę czekać...")
       gui.change_button_state(false)
       gui.clear_products_box()
       gui.clear_components_list()
