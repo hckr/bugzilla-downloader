@@ -25,7 +25,7 @@ class ProductsListParser < BaseParser
     product_regex_occurences.each do |product_info|
       product_result = {
         :name => HTMLEntities.new.decode(product_info[1]),
-        :uri_name => product_info[1].gsub("&nbsp;","%20"),
+        :uri_name => product_info[1].gsub("&nbsp;","%20").gsub("&#8209;", "-").gsub("(","%28").gsub(")","%29"),,
         :subpage_uri => product_info[0],
         :components => Array.new
       }
@@ -35,7 +35,7 @@ class ProductsListParser < BaseParser
         component_result = {
           :product_name => product_result[:uri_name],
           :name => HTMLEntities.new.decode(component_info[1]),
-          :uri_name => component_info[1].gsub("&nbsp;", "%20"),
+          :uri_name => component_info[1].gsub("&nbsp;", "%20").gsub("&#8209;", "-").gsub("(","%28").gsub(")","%29"),,
           :subpage_uri => component_info[0].gsub("amp;","")
         }
         product_result[:components].push(component_result)

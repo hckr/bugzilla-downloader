@@ -59,7 +59,7 @@ class Downloader
           result_date = single_result[:fields]["creation_ts"][:value].split(/[ :-]/).map(&:to_i)
           result_date_sum = result_date[0] * 10000 + result_date[1] * 100 + result_date[2]
           result_phrase = single_result[:fields]["short_desc"][:value].to_s.downcase
-          if ((data[:author].empty? || (result_author_full != nil && result_author_full.downcase[data[:author]]) || (result_author_full != nil && result_author_nick.downcase[data[:author]])) && (data[:phrase].empty? || result_phrase.downcase[data[:phrase]]) && (data[:from_date] == 0 || (data[:from_date] <= result_date_sum && data[:to_date] >= result_date_sum)))
+          if ((data[:author].empty? || (result_author_full != nil && result_author_full.downcase[data[:author]]) || (result_author_nick != nil && result_author_nick.downcase[data[:author]])) && (data[:phrase].empty? || result_phrase.downcase[data[:phrase]]) && (data[:from_date] == 0 || (data[:from_date] <= result_date_sum && data[:to_date] >= result_date_sum)))
             final_json[x[:id]] = detail_item_parser.get_all_info_array()
           end
           number_items = number_items + 1
